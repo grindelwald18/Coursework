@@ -10,13 +10,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private AuthenticationRepository authenticationRepository;
+    private final AuthenticationRepository authenticationRepository;
 
     public List<Authentication> listAuthentication(){
         return authenticationRepository.findAll();
     }
     public void addAuthentication(Authentication authentication){
-        authentication.setLogin(authentication.getLogin());
         authentication.setPassword(authentication.getPassword());
         authenticationRepository.save(authentication);
     }

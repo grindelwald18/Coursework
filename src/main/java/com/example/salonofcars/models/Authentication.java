@@ -1,5 +1,6 @@
 package com.example.salonofcars.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,8 +22,12 @@ public class Authentication {
     @Column(name = "password")
     private String password;
 
-    public Authentication(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "authentication", cascade = CascadeType.ALL)
+//    private User user;
+
+//    public Authentication(String login, String password) {
+//        this.login = login;
+//        this.password = password;
+//    }
 }
