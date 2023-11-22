@@ -1,5 +1,6 @@
 package com.example.salonofcars.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,5 +38,8 @@ public class Car {
     @JoinColumn(name = "fuel_type_id")
     private FuelType fuelType;
 
-
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Basket basket;
 }

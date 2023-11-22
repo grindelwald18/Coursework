@@ -2,8 +2,10 @@ package com.example.salonofcars.services;
 
 import com.example.salonofcars.dtos.UserDTO;
 import com.example.salonofcars.models.Authentication;
+import com.example.salonofcars.models.Basket;
 import com.example.salonofcars.models.User;
 import com.example.salonofcars.repositories.AuthenticationRepository;
+import com.example.salonofcars.repositories.BasketRepository;
 import com.example.salonofcars.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,9 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private UserRepository userRepository;
-    private AuthenticationRepository authenticationRepository;
+    private final UserRepository userRepository;
+    private final AuthenticationRepository authenticationRepository;
+    private final BasketRepository basketRepository;
     public List<User> listUsers() {
         return userRepository.findAll();
     }
@@ -26,13 +29,16 @@ public class UserService {
             return "Пользователь с таким логином уже существует";
 
         authenticationRepository.save(userDTO.getAuthentication());
-
         User user = mapUserDTOToUser(userDTO);
+        Basket basket = new Basket();
+        basketRepository.save(basket);
+        user.setBasket(basket);
         userRepository.save(user);
         return "Пользователь добавлен";
     }
 
     public String deleteUser(int id) {
+        basketRepository.deleteById(id);
         userRepository.deleteById(id);
         return "Успешно удален";
     }
@@ -76,7 +82,7 @@ public class UserService {
         User user = new User();
         user.setAuthentication(userDTO.getAuthentication());
         user.setSurname(userDTO.getSurname());
-        userRepository.save(user);
+//        userRepository.save(user);
 
         return user;
 

@@ -24,7 +24,10 @@ public class User {
     private String surname;
 
     @OneToOne
-    @JoinColumn(name = "auth")
+    @JoinColumn(name = "authentication")
     private Authentication authentication;
 
+    @OneToOne
+    @JoinColumn(name = "basket")
+    private Basket basket;
 }
