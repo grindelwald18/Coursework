@@ -1,5 +1,6 @@
 package com.example.salonofcars.controllers;
 
+import com.example.salonofcars.JsonInfo;
 import com.example.salonofcars.dtos.CarDTO;
 import com.example.salonofcars.models.Car;
 import com.example.salonofcars.services.CarService;
@@ -40,5 +41,8 @@ public class CarController {
     public Car getCar(@PathVariable Integer id){
         return carService.getCar(id);
     }
-
+    @PostMapping("/filtr")
+    public List<Car> getFiltrCar(@RequestBody JsonInfo jsonInfo){
+        return carService.filtrOfCar(jsonInfo);
+    }
 }

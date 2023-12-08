@@ -2,8 +2,7 @@ package com.example.salonofcars.controllers;
 
 import com.example.salonofcars.dtos.ModelDTO;
 import com.example.salonofcars.models.Model;
-import com.example.salonofcars.services.FuelTypeService;
-import com.example.salonofcars.services.ModelServices;
+import com.example.salonofcars.services.ModelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +14,11 @@ import java.util.List;
 @RequestMapping("/model")
 @RequiredArgsConstructor
 public class ModelController {
-    private final ModelServices modelServices;
+    private final ModelService modelServices;
 
     @GetMapping
-    public List<Model> getModels(@RequestParam (name="model",required = false) String model){
-        return modelServices.listModels(model);
+    public List<Model> getModels(@RequestParam (name="brand-id",required = false) Integer brandId){
+        return modelServices.listModels(brandId);
     }
     @PostMapping("/add")
     public ResponseEntity<ModelDTO> addModel(@RequestBody ModelDTO modelDTO){

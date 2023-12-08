@@ -7,22 +7,22 @@ import com.example.salonofcars.repositories.ModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ModelServices {
+public class ModelService {
     private final ModelRepository modelRepository;
     private final BrandRepository brandRepository;
 
 
-    public List<Model> listModels(String modelName) {
-        if (modelName != null) {
-            return modelRepository.findByModel(modelName);
+
+    public List<Model> listModels(Integer brandId) {
+        if (brandId == null) {
+            return modelRepository.findAll();
         }
-        return modelRepository.findAll();
+        return modelRepository.findByBrandId(brandId);
     }
 
     public void saveModel(ModelDTO modelDTO) {

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ModelRepository extends JpaRepository<Model,Integer> {
-    List<Model> findByModel(String modelName);
+    List<Model> findByBrandId(Integer brandId);
 }

@@ -1,5 +1,6 @@
 package com.example.salonofcars.controllers;
 
+import com.example.salonofcars.dtos.BasketDTO;
 import com.example.salonofcars.models.Basket;
 import com.example.salonofcars.services.BasketService;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -20,8 +21,8 @@ public class BasketController {
         return basketService.listBasket();
     }
     @PostMapping("/add")
-    public ResponseEntity<String> addBasket(@RequestBody Basket basket){
-        String str = basketService.addBasket(basket);
+    public ResponseEntity<String> addBasket(@RequestBody BasketDTO basketDTO){
+        String str = basketService.addCar(basketDTO);
         return ResponseEntity.ok(str);
     }
     @DeleteMapping("/{id}")

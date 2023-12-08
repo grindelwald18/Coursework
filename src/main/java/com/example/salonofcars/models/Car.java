@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "cars")
@@ -42,4 +44,5 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Basket basket;
+
 }

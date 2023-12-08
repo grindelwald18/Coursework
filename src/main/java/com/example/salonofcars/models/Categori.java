@@ -10,21 +10,23 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "baskets")
+@Table(name = "categories")
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Basket {
+public class Categori {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name="id")
     private int id;
 
-    @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL)
-    private List<Car> cars;
 
+    @Column(name = "category")
+    private int category;
 
-    public void addCar(Car car) {
-        cars.add(car);
-        car.setBasket(this);
-    }
+    @Column(name = "percent")
+    private float percent;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "categori", cascade = CascadeType.ALL)
+    private List<Seller> sellers;
 }
